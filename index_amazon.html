@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Clone</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #131921;
+            padding: 10px 20px;
+            color: white;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .search-bar {
+            width: 50%;
+            padding: 8px;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .cart {
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .navbar {
+            background-color: #232f3e;
+            padding: 10px 0;
+        }
+
+        .navbar ul {
+            display: flex;
+            justify-content: space-around;
+            list-style-type: none;
+        }
+
+        .navbar ul li {
+            padding: 5px 15px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .navbar ul li a:hover {
+            color: #ff9900;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .product-card {
+            width: calc(33% - 20px);
+            background-color: white;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .product-info h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .product-info p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .add-to-cart-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #ff9900;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: #e68a00;
+        }
+
+        .cart-popup {
+            display: none;
+            position: fixed;
+            right: 20px;
+            top: 60px;
+            width: 300px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 8px;
+            z-index: 1000;
+        }
+
+        .cart-popup h2 {
+            margin-top: 0;
+        }
+
+        .cart-popup ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .cart-popup ul li {
+            border-bottom: 1px solid #ddd;
+            padding: 5px 0;
+        }
+
+        .cart-popup button {
+            padding: 10px;
+            background-color: #ff9900;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        .cart-popup button:hover {
+            background-color: #e68a00;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #131921;
+            color: white;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        @media (max-width: 768px) {
+            .product-card {
+                width: calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-card {
+                width: calc(100% - 20px);
+            }
+
+            .search-bar {
+                width: 100%;
+            }
+
+            .cart {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">Amazon Clone</div>
+        <input type="text" class="search-bar" placeholder="Search for products...">
+        <div class="cart" onclick="toggleCart()">
+            <span id="cart-count">0</span> items
+        </div>
+    </header>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Deals</a></li>
+            <li><a href="#">Orders</a></li>
+            <li><a href="#">Account</a></li>
+            <li><a href="#">Help</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="product-list">
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('https://picsum.photos/200/300?random=1');"></div>
+                <div class="product-info">
+                    <h3>Product 1</h3>
+                    <p>$20.00</p>
+                    <button class="add-to-cart-btn" data-product-name="Product 1" data-product-price="20">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('https://picsum.photos/200/300?random=2');"></div>
+                <div class="product-info">
+                    <h3>Product 2</h3>
+                    <p>$30.00</p>
+                    <button class="add-to-cart-btn" data-product-name="Product 2" data-product-price="30">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('https://picsum.photos/200/300?random=3');"></div>
+                <div class="product-info">
+                    <h3>Product 3</h3>
+                    <p>$25.00</p>
+                    <button class="add-to-cart-btn" data-product-name="Product 3" data-product-price="25">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('https://picsum.photos/200/300?random=4');"></div>
+                <div class="product-info">
+                    <h3>Product 4</h3>
+                    <p>$40.00</p>
+                    <button class="add-to-cart-btn" data-product-name="Product 4" data-product-price="40">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('https://picsum.photos/200/300?random=5');"></div>
+                <div class="product-info">
+                    <h3>Product 5</h3>
+                    <p>$35.00</p>
+                    <button class="add-to-cart-btn" data-product-name="Product 5" data-product-price="35">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('https://picsum.photos/200/300?random=6');"></div>
+                <div class="product-info">
+                    <h3>Product 6</h3>
+                    <p>$50.00</p>
+                    <button class="add-to-cart-btn" data-product-name="Product 6" data-product-price="50">Add to Cart</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <aside id="cart-popup" class="cart-popup">
+        <h2>Your Cart</h2>
+        <ul id="cartItems"></ul>
+        <div id="totalPrice">Total: $0.00</div>
+        <button onclick="toggleCart()">Close</button>
+    </aside>
+
+    <footer>
+        <p>&copy; 2024 Amazon Clone. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let cart = [];
+
+        function addToCart(productName, productPrice) {
+            cart.push({ name: productName, price: productPrice });
+            displayCart();
+            updateCartCount();
+        }
+
+        function displayCart() {
+            let cartItems = document.getElementById('cartItems');
+            let totalPrice = document.getElementById('totalPrice');
+            cartItems.innerHTML = '';
+            let total = 0;
+
+            cart.forEach(item => {
+                let li = document.createElement('li');
+                li.textContent = `${item.name} - $${item.price.toFixed(2)}`;
+                cartItems.appendChild(li);
+                total += item.price;
+            });
+
+            totalPrice.textContent = `Total: $${total.toFixed(2)}`;
+        }
+
+        function updateCartCount() {
+            document.getElementById('cart-count').textContent = cart.length;
+        }
+
+        function toggleCart() {
+            let cartPopup = document.getElementById('cart-popup');
+            cartPopup.style.display = (cartPopup.style.display === 'none' || cartPopup.style.display === '') ? 'block' : 'none';
+        }
+
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                let productName = this.getAttribute('data-product-name');
+                let productPrice = parseFloat(this.getAttribute('data-product-price'));
+                addToCart(productName, productPrice);
+            });
+        });
+    </script>
+</body>
+</html>

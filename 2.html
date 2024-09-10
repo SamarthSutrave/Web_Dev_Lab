@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UVCE College Infrastructure</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a1a2e;
+            color: #eaeaea;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #ffcc00;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #16213e;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid #0f3460;
+        }
+        th {
+            background-color: #0f3460;
+            color: #ffcc00;
+        }
+        tr:nth-child(even) {
+            background-color: #1a1a2e;
+        }
+        tr:nth-child(odd) {
+            background-color: #0f3460;
+        }
+        tr:hover {
+            background-color: #e94560;
+            color: #ffffff;
+        }
+        .image-container img {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+        }
+        .highlight {
+            background-color: #e94560 !important;
+            color: #ffffff !important;
+        }
+    </style>
+    <script>
+        function highlightRow(rowId) {
+            var row = document.getElementById(rowId);
+            row.classList.toggle("highlight");
+        }
+    </script>
+</head>
+<body>
+
+    <h1>UVCE College Infrastructure</h1>
+
+    <table>
+        <tr>
+            <th>Section</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>Main Building</td>
+            <td>The iconic main building of UVCE houses administrative offices and several lecture halls. It’s a heritage structure known for its historic architecture.</td>
+        </tr>
+        <tr id="labsRow" onclick="highlightRow('labsRow')">
+            <td>Labs</td>
+            <td>State-of-the-art laboratories equipped with the latest technology for various departments, including computer science, electronics, and mechanical engineering.</td>
+        </tr>
+        <tr>
+            <td>Library</td>
+            <td>The central library offers a vast collection of books, journals, and digital resources, providing a conducive environment for research and learning.</td>
+        </tr>
+        <tr>
+            <td>Hostels</td>
+            <td>Residential facilities for students with amenities like study rooms, internet access, and recreational areas.</td>
+        </tr>
+        <tr>
+            <td>Sports Complex</td>
+            <td>The sports complex includes facilities for indoor and outdoor games, a gymnasium, and a swimming pool.</td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <th>Location</th>
+            <th>Image</th>
+        </tr>
+        <tr>
+            <td>Main Building</td>
+            <td class="image-container"><img src="https://via.placeholder.com/600x400/000000/FFFFFF/?text=Main+Building" alt="Main Building"></td>
+        </tr>
+        <tr>
+            <td>Library</td>
+            <td class="image-container"><img src="https://via.placeholder.com/600x400/222222/FFFFFF/?text=Library" alt="Library"></td>
+        </tr>
+        <tr>
+            <td>Sports Complex</td>
+            <td class="image-container"><img src="https://via.placeholder.com/600x400/333333/FFFFFF/?text=Sports+Complex" alt="Sports Complex"></td>
+        </tr>
+    </table>
+
+</body>
+</html>

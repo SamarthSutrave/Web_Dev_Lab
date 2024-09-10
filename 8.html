@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript String and Number Operations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h2 {
+            color: #333;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .input-group button {
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .input-group button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h2>JavaScript String and Number Operations</h2>
+
+   
+    <div class="input-group">
+        <label for="string-input">Enter a string:</label>
+        <input type="text" id="string-input" placeholder="Enter a string to check if the first character is uppercase">
+        <button onclick="checkUppercase()">Check Uppercase</button>
+        <div class="result" id="uppercase-result"></div>
+    </div>
+
+    
+    <div class="input-group">
+        <label for="email-input">Enter an email address:</label>
+        <input type="email" id="email-input" placeholder="Enter an email address to validate">
+        <button onclick="validateEmailInput()">Validate Email</button>
+        <div class="result" id="email-result"></div>
+    </div>
+
+  
+    <div class="input-group">
+        <label for="number-input">Enter a number:</label>
+        <input type="number" id="number-input" placeholder="Enter a number to format with commas">
+        <button onclick="formatNumber()">Format Number</button>
+        <div class="result" id="number-format-result"></div>
+    </div>
+
+    <script>
+       
+        function isFirstCharacterUppercase(str) {
+            if (!str) return false; 
+            const firstChar = str.charAt(0);
+            return firstChar === firstChar.toUpperCase();
+        }
+
+        function validateEmail(email) {
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            return emailPattern.test(email);
+        }
+
+       
+        function formatNumberWithCommas(number) {
+            return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+
+        function checkUppercase() {
+            const userInput = document.getElementById('string-input').value;
+            const result = isFirstCharacterUppercase(userInput);
+            document.getElementById('uppercase-result').innerHTML = 
+                `Is the first character of "${userInput}" uppercase? ${result}`;
+        }
+
+        function validateEmailInput() {
+            const userEmail = document.getElementById('email-input').value;
+            const result = validateEmail(userEmail);
+            document.getElementById('email-result').innerHTML = 
+                `Is "${userEmail}" a valid email? ${result}`;
+        }
+
+       
+        function formatNumber() {
+            const userNumber = document.getElementById('number-input').value;
+            const formattedNumber = formatNumberWithCommas(userNumber);
+            document.getElementById('number-format-result').innerHTML = 
+                `Formatted number: ${formattedNumber}`;
+        }
+    </script>
+</body>
+</html>
